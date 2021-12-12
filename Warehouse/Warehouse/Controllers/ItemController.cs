@@ -30,20 +30,47 @@ namespace Warehouse.Controllers
 
         [HttpGet]
         [Route("api/Item/Details/{id}")]
-        public Item Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var result = _itemServices.EditItem(id);
+            var result = await _itemServices.EditItem(id);
 
-            return result;
+            return RedirectToAction(nameof(Edit), result);
         }
 
         [HttpPost]
+        [Route(("api/Item/Add/{id}"))]
+        public async Task<IActionResult> Add([FromBody] Item item)
+        {
+
+            return null;
+        }
+
+        [HttpDelete]
         [Route("api/Item/Delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var delete = await _itemServices.DeleteItem(id);
 
-            return RedirectToAction(nameof(Index));
+            if (delete == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index), delete);
+        }
+
+        [HttpPut]
+        [Route("api/Item/Update/{id}")]
+        public async Task<IActionResult> Update(Item model)
+        {
+            var update = await _itemServices.UpdateItem(model);
+
+            if (update == null)
+            {
+                return RedirectToAction(nameof(Index), model);
+            }
+
+            return RedirectToAction(nameof(Index), model);
         }
     }
 }

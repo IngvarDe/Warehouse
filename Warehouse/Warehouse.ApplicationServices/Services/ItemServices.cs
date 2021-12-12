@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Warehouse.Core.Domain;
+using Warehouse.Core.Dtos;
+using Warehouse.Core.ServiceInterface;
 using Warehouse.Data;
 
 namespace Warehouse.ApplicationServices.Services
 {
-    public class ItemServices
+    public class ItemServices : IItemServices
     {
         private readonly WarehouseDbContext _context;
 
@@ -31,9 +33,29 @@ namespace Warehouse.ApplicationServices.Services
             return result;
         }
 
-        public Item EditItem(Guid id)
+        public async Task<Item> EditItem(Guid id)
         {
-            Item item = _context.Items.Find(id);
+            var item = await _context.Items
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            return item;
+        }
+
+        public async Task<Item> Add(ItemDto dto)
+        {
+            Item item = new Item();
+
+
+            item.Id = Guid.NewGuid();
+            item.SerialNumber = dto.SerialNumber;
+            item.Name = dto.Name;
+            item.Weight = dto.Weight;
+            item.Description = dto.Description;
+            item.CreatedAt = DateTime.Now;
+            item.ModifiedAt = DateTime.Now;
+
+            //todo Location and Dimensions
+
 
             return item;
         }
@@ -45,6 +67,14 @@ namespace Warehouse.ApplicationServices.Services
 
             //Item item = _context.Items.Find(id);
             _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+
+            return item;
+        }
+
+        public async Task<Item> UpdateItem(Item item)
+        {
+            _context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return item;
