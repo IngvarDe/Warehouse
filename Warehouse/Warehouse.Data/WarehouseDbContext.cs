@@ -14,6 +14,8 @@ namespace Warehouse.Data
         {
         }
 
-
+        public DbSet<Dimension> Dimensions { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }
