@@ -41,8 +41,9 @@ namespace Warehouse.Controllers
         [Route(("api/Item/Add/{id}"))]
         public async Task<IActionResult> Add([FromBody] Item item)
         {
+            var add = await _itemServices.Add(item);
 
-            return null;
+            return RedirectToAction(nameof(Index), item);
         }
 
         [HttpDelete]

@@ -41,9 +41,9 @@ namespace Warehouse.ApplicationServices.Services
             return item;
         }
 
-        public async Task<Item> Add(ItemDto dto)
+        public async Task<Item> Add(Item item)
         {
-            Item item = new Item();
+            ItemDto dto = new ItemDto();
 
 
             item.Id = Guid.NewGuid();
@@ -54,8 +54,11 @@ namespace Warehouse.ApplicationServices.Services
             item.CreatedAt = DateTime.Now;
             item.ModifiedAt = DateTime.Now;
 
-            //todo Location and Dimensions
+            //item.Dimension.X = dto.Dimension.X;
 
+            //todo Location and Dimensions
+            await _context.Items.AddAsync(item);
+            await _context.SaveChangesAsync();
 
             return item;
         }
