@@ -20,5 +20,6 @@ namespace Warehouse.Core.Domain
         public Dimension Dimension { get; set; }
 
         public IEnumerable<File> File { get; set; } = new List<File>();
+        public User User { get; set; }
     }
 }

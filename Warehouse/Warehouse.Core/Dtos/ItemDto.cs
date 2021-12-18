@@ -18,5 +18,6 @@ namespace Warehouse.Core.Dtos
         public DimensionDto Dimension { get; set; }
 
         public IEnumerable<FileDto> File { get; set; } = new List<FileDto>();
+        public UserDto User { get; set; }
     }
 }
