@@ -47,6 +47,38 @@ export class ItemServices {
     return edit;
   }
 
+  saveItem(item): Observable<Item> {
+
+    var save = this.http.post<Item>(this.myAppUrl + this.myApiUrl, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      )
+
+    return save;
+  }
+
+  updateItem(id: number, item): Observable<Item> {
+
+    var update = this.http.put<Item>(this.myAppUrl + this.myApiUrl + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+    );
+
+    return update;
+  }
+
+  deleteItem(id: number): Observable<Item> {
+
+    var deleteItem = this.http.delete<Item>(this.myAppUrl + this.myApiUrl + id)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+    );
+
+    return deleteItem;
+  }
 
   errorHandler(error) {
     let errorMessage = '';

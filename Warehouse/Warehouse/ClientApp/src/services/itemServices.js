@@ -29,6 +29,21 @@ var ItemServices = /** @class */ (function () {
             .pipe(operators_1.retry(1), operators_1.catchError(this.errorHandler));
         return edit;
     };
+    ItemServices.prototype.saveItem = function (item) {
+        var save = this.http.post(this.myAppUrl + this.myApiUrl, JSON.stringify(item), this.httpOptions)
+            .pipe(operators_1.retry(1), operators_1.catchError(this.errorHandler));
+        return save;
+    };
+    ItemServices.prototype.updateItem = function (id, item) {
+        var update = this.http.put(this.myAppUrl + this.myApiUrl + id, JSON.stringify(item), this.httpOptions)
+            .pipe(operators_1.retry(1), operators_1.catchError(this.errorHandler));
+        return update;
+    };
+    ItemServices.prototype.deleteItem = function (id) {
+        var deleteItem = this.http.delete(this.myAppUrl + this.myApiUrl + id)
+            .pipe(operators_1.retry(1), operators_1.catchError(this.errorHandler));
+        return deleteItem;
+    };
     ItemServices.prototype.errorHandler = function (error) {
         var errorMessage = '';
         if (error.error instanceof ErrorEvent) {
