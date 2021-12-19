@@ -16,9 +16,9 @@ namespace Warehouse.Core.Domain
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
-        public IEnumerable<Location> Location { get; set; }
-        public Dimension Dimension { get; set; }
 
+        public IEnumerable<Location> Location = new List<Location>();
+        public Dimension Dimension { get; set; }
         public IEnumerable<File> File { get; set; } = new List<File>();
         public User User { get; set; }
     }

@@ -31,7 +31,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\models\dimension.ts" />
+    <None Remove="ClientApp\src\models\item.ts" />
+    <None Remove="ClientApp\src\models\user.ts" />
+    <None Remove="ClientApp\src\models\warehouseFile.ts" />
+    <None Remove="ClientApp\src\models\warehouseLocation.ts" />
+    <None Remove="ClientApp\src\services\itemServices.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Warehouse.Data\Warehouse.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\models\dimension.ts" />
+    <TypeScriptCompile Include="ClientApp\src\models\item.ts" />
+    <TypeScriptCompile Include="ClientApp\src\models\user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\models\warehouseFile.ts" />
+    <TypeScriptCompile Include="ClientApp\src\models\warehouseLocation.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\itemServices.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

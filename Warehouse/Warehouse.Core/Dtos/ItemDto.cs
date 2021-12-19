@@ -14,7 +14,7 @@ namespace Warehouse.Core.Dtos
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
-        public IEnumerable<LocationDto> Location { get; set; }
+        public IEnumerable<LocationDto> Location { get; set; } = new List<LocationDto>();
         public DimensionDto Dimension { get; set; }
 
         public IEnumerable<FileDto> File { get; set; } = new List<FileDto>();
