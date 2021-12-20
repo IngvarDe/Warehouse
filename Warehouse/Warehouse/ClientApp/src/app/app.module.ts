@@ -9,7 +9,9 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { ItemComponent } from './item/item.component';
+import { ItemComponent } from './itemCrud/item/item.component';
+import { ItemsComponent } from './itemCrud/items/items.component';
+import { ItemsAddEditComponent } from './itemCrud/items-add-edit/items-add-edit.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
@@ -22,7 +24,9 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ItemComponent
+    ItemComponent,
+    ItemsComponent,
+    ItemsAddEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,6 +37,8 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'item', component: ItemComponent },
+      { path: 'items', component: ItemsComponent },
+      { path: 'items-add-edit', component: ItemsAddEditComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ])
   ],

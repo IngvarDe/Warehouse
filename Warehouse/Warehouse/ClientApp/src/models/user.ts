@@ -1,3 +1,5 @@
 export class User {
-  //todo
+  id: string
+  username: string
+  password : string
 }

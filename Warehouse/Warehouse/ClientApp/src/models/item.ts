@@ -11,8 +11,8 @@ export class Item {
   description: string;
   createdAt: Date;
   modifiedAt: Date;
-  location: WarehouseLocation;
+  location: WarehouseLocation[];
   dimension: Dimension;
-  file: WarehouseFile;
+  file: WarehouseFile[];
   user: User;
 }
